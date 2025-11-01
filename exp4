@@ -8,22 +8,30 @@ int main()
     {
         scanf("%d",&a[i]);
     }
+    int x,f1=0;
+    scanf("%d",&x);
     for(int i=0;i<n;i++)
     {
+        int s=0;
         for(int j=i+1;j<n;j++)
         {
-            if(a[i]>a[j])
+            if(a[i]+a[j]==x)
             {
-                int t=a[i];
-                a[i]=a[j];
-                a[j]=t;
+                printf("%d\n",a[i]);
+                printf("%d",a[j]);
+                f1=1;
+                s=1;
+                break;
             }
         }
+        if(s==1)
+        {
+            break;
+        }
+        
     }
-    int s=0;
-    for(int i=0;i<n;i++)
+    if(f1==0)
     {
-        s+=(a[i]*i);
+        printf("No");
     }
-    printf("%d",s);
 }

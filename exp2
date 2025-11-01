@@ -8,29 +8,29 @@ int main()
     {
         scanf("%d",&a[i]);
     }
-    int m;
-    scanf("%d",&m);
-    int b[m];
-    for(int i=0;i<m;i++)
-    {
-        scanf("%d",&b[i]);
-    }
-    int c=0;
-    int j=0;
-   
-    while(j<m)
-    {
-        for(int i=0;i<n;i++)
+int c=0;
+int m=0;
+int e=0;
+    for(int i=0;i<n;i++)
+    {   
+        c=0;
+        if(a[i]!=-1)
         {
-            
-            if(b[i]>=a[j])
+            for(int j=i+1;j<n;j++)
             {
-                c++;
-                j++;
+                if(a[i]==a[j])
+                {
+                    c++;
+                    a[j]=-1;
+                }
             }
         }
-        j++;
-        
+        if(c>m)
+        {
+            m=c;
+            e=a[i];
+
+        }
     }
-    printf("%d",c);
+    printf("%d",e);
 }
