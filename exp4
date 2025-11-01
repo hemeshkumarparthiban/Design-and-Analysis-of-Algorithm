@@ -1,70 +1,35 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-int findCeilIndex(int tails[], int low, int high, int key) {
-    while (high > low) {
-        int mid = low + (high - low) / 2;
-        if (tails[mid] > key) {
-            high = mid;
-        } else {
-            low = mid + 1;
-        }
-    }
-    return low;
-}
-
-int findLNDS(int arr[], int n) {
-    if (n == 0) {
-        return 0;
-    }
-
-    int* tails = (int*)malloc(n * sizeof(int));
-    if (tails == NULL) {
-        return -1; 
-    }
-    
-    int length = 1;
-    tails[0] = arr[0];
-
-    for (int i = 1; i < n; i++) {
-        if (arr[i] >= tails[length - 1]) {
-            tails[length] = arr[i];
-            length++;
-        }
-        else {
-            int ceilIndex = findCeilIndex(tails, 0, length - 1, arr[i]);
-            tails[ceilIndex] = arr[i];
-        }
-    }
-
-    free(tails);
-    return length;
-}
-
-int main() {
+#include<stdio.h>
+int main()
+{
     int n;
-    scanf("%d", &n);
-
-    if (n < 0) {
-        return 1;
+    scanf("%d",&n);
+    while(n>0)
+    {
+        int n1;
+        scanf("%d",&n1);
+        int a[n1];
+        for(int i=0;i<n1;i++)
+        {
+            scanf("%d",&a[i]);
+        }
+         int m;
+        scanf("%d",&m);
+        int b[m];
+        for(int i=0;i<m;i++)
+        {
+            scanf("%d",&b[i]);
+        }
+        for(int i=0;i<n1;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(a[i]==b[j])
+                {
+                    printf("%d ",a[i]);
+                    break;
+                }
+            }
+        }
+        n--;
     }
-    if (n == 0) {
-        printf("0\n");
-        return 0;
-    }
-
-    int* sequence = (int*)malloc(n * sizeof(int));
-    if (sequence == NULL) {
-        return 1;
-    }
-
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &sequence[i]);
-    }
-
-    int result = findLNDS(sequence, n);
-    printf("%d\n", result);
-    
-    free(sequence);
-    return 0;
 }
